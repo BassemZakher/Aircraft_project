@@ -1,0 +1,485 @@
+✗ Microsoft.SqlServer.Prose.Import.BcpProcessException: Erreur lors de l'insertion des données dans la table.
+---> System.InvalidOperationException: The given value '139966,69' of type String from the data source cannot be converted to type int for Column 2 [Valeur_fonciere].
+---> System.FormatException: Failed to convert parameter value from a String to a Int32.
+---> System.FormatException: The input string '139966,69' was not in a correct format.
+at System.Number.ThrowOverflowOrFormatException(ParsingStatus status, ReadOnlySpan1 value, TypeCode type)
+at System.String.System.IConvertible.ToInt32(IFormatProvider provider)
+at System.Convert.ChangeType(Object value, Type conversionType, IFormatProvider provider)
+at Microsoft.Data.SqlClient.SqlParameter.CoerceValue(Object value, MetaType destinationType, Boolean& coercedToDataFeed, Boolean& typeChanged, Boolean allowStreaming)
+--- End of inner exception stack trace ---
+at Microsoft.Data.SqlClient.SqlParameter.CoerceValue(Object value, MetaType destinationType, Boolean& coercedToDataFeed, Boolean& typeChanged, Boolean allowStreaming)
+at Microsoft.Data.SqlClient.SqlBulkCopy.ConvertValue(Object value, _SqlMetaData metadata, Boolean isNull, Boolean& isSqlType, Boolean& coercedToDataFeed)
+--- End of inner exception stack trace ---
+at Microsoft.Data.SqlClient.SqlBulkCopy.ConvertValue(Object value, _SqlMetaData metadata, Boolean isNull, Boolean& isSqlType, Boolean& coercedToDataFeed)
+at Microsoft.Data.SqlClient.SqlBulkCopy.ReadWriteColumnValueAsync(Int32 col)
+at Microsoft.Data.SqlClient.SqlBulkCopy.CopyColumnsAsync(Int32 col, TaskCompletionSource1 source)
+at
+Microsoft.Data.SqlClient.SqlBulkCopy.CopyRowsAsync(Int32 rowsSoFar, Int32 totalRows, CancellationToken cts, TaskCompletionSource1 source)
+at Microsoft.Data.SqlClient.SqlBulkCopy.CopyBatchesAsyncContinued(BulkCopySimpleResultSet internalResults, String updateBulkCommandText, CancellationToken cts, TaskCompletionSource1 source)
+at Microsoft.Data.SqlClient.SqlBulkCopy.CopyBatchesAsync(BulkCopySimpleResultSet internalResults, String updateBulkCommandText, CancellationToken cts, TaskCompletionSource1 source)
+at Microsoft.Data.SqlClient.SqlBulkCopy.WriteToServerInternalRestContinuedAsync(BulkCopySimpleResultSet internalResults, CancellationToken cts, TaskCompletionSource1 source)
+at Microsoft.Data.SqlClient.SqlBulkCopy.WriteToServerInternalRestAsync(CancellationToken cts, TaskCompletionSource1 source)
+at Microsoft.Data.SqlClient.SqlBulkCopy.WriteToServerInternalAsync(CancellationToken ctoken)
+at Microsoft.Data.SqlClient.SqlBulkCopy.WriteRowSourceToServerAsync(Int32 columnCount, CancellationToken ctoken)
+at Microsoft.Data.SqlClient.SqlBulkCopy.WriteToServer(IDataReader reader)
+at Microsoft.SqlServer.Prose.Import.BcpTextSynthesis.InsertIntoDB(String inputFilePath, String tableName, String schemaName, IReadOnlyList1 columnInfo, SqlConnection connection, Int32 batchSize, SqlTransaction transaction, IList1 allFinalTransformations, IList1 allFinalTransformationColumns, IList1 allFinalColNames)
+--- End of inner exception stack trace ---
+at Microsoft.SqlServer.Prose.Import.BcpTextSynthesis.InsertIntoDB(String inputFilePath, String tableName, String schemaName, IReadOnlyList1 columnInfo, SqlConnection connection, Int32 batchSize, SqlTransaction transaction, IList1 allFinalTransformations, IList1 allFinalTransformationColumns, IList`1 allFinalColNames)
+at Microsoft.SqlServer.Prose.Import.BcpProcess.CreateTableAndInsertDataIntoDb(String connectionString, Int32 batchSize, String azureAccessToken)
+🅱🅰🆂🆂🅴🅼 🆉🅰🅺🅷🅴🆁 — 19/11/2025 16:49
+{
+  "bitcoin": [
+    {"date": "2024-01-06", "time_open": "2024-01-06T00:00:00Z", "time_close": "2024-01-06T23:59:59Z", "open": 44174.0, "high": 44281.0, "low": 43116.0, "close": 44114.0},
+    {"date": "2024-01-10", "time_open": "2024-01-10T00:00:00Z", "time_close": "2024-01-10T23:59:59Z", "open": 44165.0, "high": 47680.0, "low": 43248.0, "close": 46106.0},
+    {"date": "2024-01-14", "time_open": "2024-01-14T00:00:00Z", "time_close": "2024-01-14T23:59:59Z", "open": 46141.0, "high": 48888.0, "low": 41730.0, "close": 42848.0},
+    {"date": "2024-01-18", "time_open": "2024-01-18T00:00:00Z", "time_close": "2024-01-18T23:59:59Z", "open": 42823.0, "high": 43539.0, "low": 41747.0, "close": 42714.0},... (11Korestants)
+Afficher plus
+crypto_data_key.json
+61 Ko
+🅱🅰🆂🆂🅴🅼 🆉🅰🅺🅷🅴🆁 — 20/11/2025 17:50
+https://www.udemy.com/share/103J8C3@19n0foy7JafOYxxWAPTGP6mWO_oaCfTYMm8IOglglZgGkVpEB1LIV4UNmdq8CqpGrA==/
+Nicolas Levasseur — 25/11/2025 16:07
+je t'entends mais toi tu ne m'entends pas
+Nicolas Levasseur — 25/11/2025 18:17
+je ne t'entends plus
+Nicolas Levasseur — 26/11/2025 16:02
+je ne vous entends plus...j'essaye de corriger
+🅱🅰🆂🆂🅴🅼 🆉🅰🅺🅷🅴🆁 — 26/11/2025 19:01
+SELECT 
+    aircrafts.public.aircraft."Aircraft_Id",
+    "Aircraft_Type",
+    COUNT() AS n_flights,
+    -- CALCUL OPTIMISÉ DU POURCENTAGE (avec fonction de fenêtre)
+    -- Le dénominateur (Total Général) est obtenu via COUNT() OVER ()
+    -- ROUND((COUNT() 100.0) / SUM(COUNT()) OVER (), 2) AS Flights_Percentage
+    ROUND(COUNT() / (SELECT count() FROM aircrafts.public.individual_flights) 100, 2) AS Flights_Percentage
+FROM aircrafts.public.individual_flights
+JOIN aircrafts.public.aircraft 
+    ON aircrafts.public.individual_flights."Aircraft_Id" 
+        = aircrafts.public.aircraft."Aircraft_Id" 
+group by aircrafts.public.aircraft."Aircraft_Id", "Aircraft_Type"
+ORDER BY n_flights desc
+Khady CISSE — 28/11/2025 15:28
+Image
+voilà pour changer le fond
+Khady CISSE — 01/12/2025 17:27
+Category Contribution % = 
+DIVIDE(
+    SUMX(dataset_3_sales_data, dataset_3_sales_data[QuantitySold] * dataset_3_sales_data[UnitPrice]),
+    CALCULATE(SUMX(dataset_3_sales_data, dataset_3_sales_data[QuantitySold] * dataset_3_sales_data[UnitPrice]), ALL(dataset_3_products_data))
+)
+Khady CISSE — 02/12/2025 15:03
+Text.Upper(Text.Start([Nom],1)) & Text.Lower(Text.Middle([Nom],1))
+Khady CISSE — 02/12/2025 15:12
+ColonneMajuscule = 
+UPPER(LEFT([MonthName],1)) & LOWER(RIGHT([MonthName], LEN([MonthName]) - 1))
+Khady CISSE — 03/12/2025 19:16
+if List.Contains({12,1,2}, Date.Month([release_date])) then "Winter" 
+else if List.Contains({3,4,5}, Date.Month([release_date])) then "Spring" 
+else if List.Contains({6,7,8}, Date.Month([release_date])) then "Summer" 
+else "Fall"
+Nicolas Levasseur — 03/12/2025 19:23
+Saison = SWITCH( TRUE(),
+    'date_table'[Mois] IN {12, 1, 2}, "Hiver",
+    'date_table'[Mois] IN {3, 4, 5}, "Printemps",
+    'date_table'[Mois] IN {6, 7, 8}, "Été",
+    'date_table'[Mois] IN {9, 10, 11}, "Automne",
+    "Inconnu"
+)
+Nicolas Levasseur — 03/12/2025 19:47
+Top_Pays_nb_content = 
+VAR TopPays = TOPN(1, VALUES('Countries'[Country]), CALCULATE(COUNT('Countries'[show_id])), DESC)
+VAR NbShows = CALCULATE(COUNT('Countries'[show_id]), 'Countries'[Country] = TopPays)
+RETURN
+TopPays & " : " & NbShows
+Khady CISSE — 03/12/2025 19:54
+Category_Count = COUNTROWS('categories')
+🅱🅰🆂🆂🅴🅼 🆉🅰🅺🅷🅴🆁 — 03/12/2025 20:00
+Type de fichier joint : unknown
+netflix_cheating_version.pbix
+2.40 MB
+Khady CISSE — 08/12/2025 14:09
+OrdreSaison = 
+SWITCH(
+    'Table'[Saison],
+    "Hiver", 1,
+    "Printemps", 2,
+    "Été", 3,
+    "Automne", 4
+)
+Angel GASPARD-FAUVELLE — 08/12/2025 17:25
+https://www.kaggle.com/datasets/adarshsng/lending-club-loan-data-csv
+Lending Club Loan Data
+Complete loan data for all loans issued through the 2007-2015, including status
+Image
+🅱🅰🆂🆂🅴🅼 🆉🅰🅺🅷🅴🆁 — 08/12/2025 17:33
+REF_AREA,REF_AREA_LABEL,TIME_PERIOD,OBS_VALUE
+AFG,Afghanistan,2001-01-01,22.943765
+AFG,Afghanistan,2001-02-01,24.357903
+AFG,Afghanistan,2001-03-01,21.202933
+AFG,Afghanistan,2001-04-01,17.301832
+AFG,Afghanistan,2001-05-01,9.334624... (3Morestants)
+Afficher plus
+food_price_inflation.csv
+3 Mo
+https://www.kaggle.com/datasets/umitka/food-price-inflation
+Food Price Inflation
+World Bank Food Price Inflation Dataset – Minimal, Clean and Analysis-Ready
+Image
+🅱🅰🆂🆂🅴🅼 🆉🅰🅺🅷🅴🆁 — 08/12/2025 18:35
+https://www.kaggle.com/datasets/bhupeshsinghrathore/world-inflation-dataset-19602021
+World Inflation Dataset 1960-2021
+World Inflation from 1960 to 2021 for more than 250+ countries.
+Image
+Nicolas Levasseur — 08/12/2025 19:14
+Type de fichier joint : spreadsheet
+Evol Migration nette par pays.xls
+181.00 KB
+Type de fichier joint : spreadsheet
+Evol Taux de mortalité brut par pays.xls
+337.00 KB
+Type de fichier joint : spreadsheet
+Evolution population par pays.xls
+200.50 KB
+Type de fichier joint : spreadsheet
+Evolutiondemogpays.xls
+376.50 KB
+Type de fichier joint : spreadsheet
+Evolutiontauxactifs.xls
+380.50 KB
+"Data Source,""Indicateurs du développement dans le monde"","
+
+"Last Updated Date,""2025-12-04"","
+
+"Country Name,""Country Code"",""Indicator Name"",""Indicator Code"",""1960"",""1961"",""1962"",""1963"",""1964"",""1965"",""1966"",""1967"",""1968"",""1969"",""1970"",""1971"",""1972"",""1973"",""1974"",""1975"",""1976"",""1977"",""1978"",""1979"",""1980"",""1981"",""1982"",""1983"",""1984"",""1985"",""1986"",""1987"",""1988"",""1989"",""1990"",""1991"",""1992"",""1993"",""1994"",""1995"",""1996"",""1997"",""1998"",""1999"",""2000"",""2001"",""2002"",""2003"",""2004"",""2005"",""2006"",""2007"",""2008"",""2009"",""2010"",""2011"",""2012"",""2013"",""2014"",""2015"",""2016"",""2017"",""2018"",""2019"",""2020"",""2021"",""2022"",""2023"",""2024"","
+"Aruba,""ABW"",""Croissance du PIB (%annuel)"",""NY.GDP.MKTP.KD.ZG"","""","""","""","""","""","""","""","""","""","""","""","""","""","""","""","""","""","""","""","""","""","""","""","""","""","""","""",""16.0784313755902"",""18.6486486682331"",""12.1298405451924"",""3.96140172360629"",""7.96287173232642"",""5.88235395341866"",""7.30769324531406"",""8.20390129312089"",""2.54714368704694"",""1.18578851134656"",""7.04687499241221"",""1.99198444906199"",""1.2380418420716"",""7.62292064930222"",""4.1820016304779"",""-0.944953481157384"",""1.11050459944282"",""7.29372807096192"",""-0.383137672063768"",""1.12741146411624"",""3.0895443848509"",""1.83575517191368"",""-11.6777413693852"",""-2.73345679250639"",""3.36923718421511"",""-1.04079988436683"",""6.43148260418822"",""-1.58657513817235"",""-0.623625902371245"",""1.71962497989442"",""7.04853338603499"",""2.39708619981323"",""-2.23244202651868"",""-26.2118202145169"",""24.1326273569798"",""8.51791810517545"",""4.26371941452948"","""","... (287Korestants)
+Afficher plus
+evpibparpays.csv
+337 Ko
+Nicolas Levasseur — 08/12/2025 19:21
+Type de fichier joint : spreadsheet
+EvolutionPIBparpays.xls
+326.00 KB
+🅱🅰🆂🆂🅴🅼 🆉🅰🅺🅷🅴🆁 — 08/12/2025 19:22
+REF_AREA,REF_AREA_LABEL,TIME_PERIOD,OBS_VALUE
+AFG,Afghanistan,2001-01-01,22.943765
+AFG,Afghanistan,2001-02-01,24.357903
+AFG,Afghanistan,2001-03-01,21.202933
+AFG,Afghanistan,2001-04-01,17.301832
+AFG,Afghanistan,2001-05-01,9.334624... (3Morestants)
+Afficher plus
+food_price_inflation.csv
+3 Mo
+Nicolas Levasseur — 08/12/2025 19:23
+Sources de données complémentaires à kaggle : https://donnees.banquemondiale.org/indicator
+World Bank Open Data
+World Bank Open Data
+Free and open access to global development data
+Evolution PIB par pays : https://donnees.banquemondiale.org/indicateur/NY.GDP.MKTP.KD.ZG
+World Bank Open Data
+World Bank Open Data
+Free and open access to global development data
+Evolution migration nette par pays : https://donnees.banquemondiale.org/indicateur/SM.POP.NETM
+World Bank Open Data
+World Bank Open Data
+Free and open access to global development data
+Evolution du Tx de mortalité par pays : https://donnees.banquemondiale.org/indicateur/SP.DYN.CDRT.IN
+World Bank Open Data
+World Bank Open Data
+Free and open access to global development data
+Evolution de la population (nb hab) par pays : https://donnees.banquemondiale.org/indicator/SP.POP.TOTL
+World Bank Open Data
+World Bank Open Data
+Free and open access to global development data
+Nicolas Levasseur — 08/12/2025 19:35
+Evol vs N-1 population par pays : https://donnees.banquemondiale.org/indicateur/SP.POP.GROW
+World Bank Open Data
+World Bank Open Data
+Free and open access to global development data
+Khady CISSE — 08/12/2025 19:36
+https://www.worldbank.org/en/research/brief/inflation-database
+World Bank
+A Global Database of Inflation
+Inflation, CPI, Headline consumer price index, Food CPI inflation, Energy CPI inflation, Core CPI inflation, Producer price inflation, Gross domestic product deflator
+Image
+Nicolas Levasseur — 08/12/2025 19:42
+Evolution du Taux d'actifs par pays : https://donnees.banquemondiale.org/indicator/SL.TLF.CACT.ZS
+World Bank Open Data
+World Bank Open Data
+Free and open access to global development data
+🅱🅰🆂🆂🅴🅼 🆉🅰🅺🅷🅴🆁 — 08/12/2025 19:42
+1. Evolution de la population (nb hab) par pays : https://donnees.banquemondiale.org/indicator/SP.POP.TOTL
+2. Evolution du Tx de mortalitÃ© par pays : https://donnees.banquemondiale.org/indicateur/SP.DYN.CDRT.IN
+3. Evolution migration nette par pays : https://donnees.banquemondiale.org/indicateur/SM.POP.NETM
+4. Evolution PIB par pays : https://donnees.banquemondiale.org/indicateur/NY.GDP.MKTP.KD.ZG
+5. Evol vs N-1 population par pays : https://donnees.banquemondiale.org/indicateur/SP.POP.GROW
+6. Evolution du Taux d'actifs par pays : https://donnees.banquemondiale.org/indicator/SL.TLF.CACT.ZS
+Liens.txt
+1 Ko
+🅱🅰🆂🆂🅴🅼 🆉🅰🅺🅷🅴🆁 — 08/12/2025 19:50
+https://www.kaggle.com/datasets/umitka/food-price-inflation
+Food Price Inflation
+World Bank Food Price Inflation Dataset – Minimal, Clean and Analysis-Ready
+Image
+Nicolas Levasseur — Hier à 10:41
+Hello, je vois rejoins dans la Room4 dans 15mn. Le temps de rentrer depuis Jedha chez moi pendant la.pause !😩
+Khady CISSE — Hier à 10:44
+Hello Nicolas, ok d'accord. A toute 
+Nicolas Levasseur — Hier à 17:15
+16:04:42 [WARNING]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 2 unused configuration paths:
+models.Marts
+models.Stagings
+Angel GASPARD-FAUVELLE — Hier à 17:23
+https://github.com/Engeryu/Init_Tuto/blob/main/Git_GitHub%2F01-Github_Git_Init.md
+GitHub
+Init_Tuto/Git_GitHub/01-Github_Git_Init.md at main · Engeryu/Init_...
+Contribute to Engeryu/Init_Tuto development by creating an account on GitHub.
+Contribute to Engeryu/Init_Tuto development by creating an account on GitHub.
+Mehdi SEMAR — 12:06
+https://www.kaggle.com/datasets/zaurbegiev/my-dataset/data
+Bank Loan Status Dataset
+Future Loan Status prediction via classification models
+Image
+https://www.kaggle.com/datasets/architsharma01/loan-approval-prediction-dataset?utm_source=chatgpt.com
+Loan-Approval-Prediction-Dataset
+Loan Approval Dataset used for Prediction Models
+Image
+https://data.worldbank.org/indicator/FS.AST.PRVT.GD.ZS
+World Bank Open Data
+World Bank Open Data
+Free and open access to global development data
+https://data.ecb.europa.eu/data/data-categories/money-credit-and-banking/mfi-lending-private-sector/households
+Nicolas Levasseur — 12:40
+https://github.com/Nico-Jedha
+GitHub
+Nico-Jedha - Overview
+Nico-Jedha has 2 repositories available. Follow their code on GitHub.
+Image
+Khady CISSE — 16:56
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[codz]
+*$py.class
+
+# C extensions
+Afficher plus
+message.txt
+6 Ko
+﻿
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[codz]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py.cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+#   For a library or package, you might want to ignore these files since the code is
+#   intended to run in multiple environments; otherwise, check them in:
+# .python-version
+
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+#Pipfile.lock
+
+# UV
+#   Similar to Pipfile.lock, it is generally recommended to include uv.lock in version control.
+#   This is especially recommended for binary packages to ensure reproducibility, and is more
+#   commonly ignored for libraries.
+#uv.lock
+
+# poetry
+#   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.
+#   This is especially recommended for binary packages to ensure reproducibility, and is more
+#   commonly ignored for libraries.
+#   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control
+#poetry.lock
+#poetry.toml
+
+# pdm
+#   Similar to Pipfile.lock, it is generally recommended to include pdm.lock in version control.
+#   pdm recommends including project-wide configuration in pdm.toml, but excluding .pdm-python.
+#   https://pdm-project.org/en/latest/usage/project/#working-with-version-control
+#pdm.lock
+#pdm.toml
+.pdm-python
+.pdm-build/
+
+# pixi
+#   Similar to Pipfile.lock, it is generally recommended to include pixi.lock in version control.
+#pixi.lock
+#   Pixi creates a virtual environment in the .pixi directory, just like venv module creates one
+#   in the .venv directory. It is recommended not to include this directory in version control.
+.pixi
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.envrc
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# PyCharm
+#  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
+#  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
+#  and can be added to the global gitignore or merged into this file.  For a more nuclear
+#  option (not recommended) you can uncomment the following to ignore the entire idea folder.
+#.idea/
+
+# Abstra
+# Abstra is an AI-powered process automation framework.
+# Ignore directories containing user credentials, local state, and settings.
+# Learn more at https://abstra.io/docs
+.abstra/
+
+# Visual Studio Code
+#  Visual Studio Code specific template is maintained in a separate VisualStudioCode.gitignore 
+#  that can be found at https://github.com/github/gitignore/blob/main/Global/VisualStudioCode.gitignore
+#  and can be added to the global gitignore or merged into this file. However, if you prefer, 
+#  you could uncomment the following to ignore the entire vscode folder
+# .vscode/
+
+# Ruff stuff:
+.ruff_cache/
+
+# PyPI configuration file
+.pypirc
+
+# Cursor
+#  Cursor is an AI-powered code editor. `.cursorignore` specifies files/directories to
+#  exclude from AI features like autocomplete and code analysis. Recommended for sensitive data
+#  refer to https://docs.cursor.com/context/ignore-files
+.cursorignore
+.cursorindexingignore
+
+# Marimo
+marimo/_static/
+marimo/_lsp/
+__marimo__/
+
+# Default .gitignore content added by dbt Cloud# you shouldn't commit these into source control
+# these are the default directory names, adjust/add to fit your needs
+target/
+dbt_packages/
+logs/
+# end dbt Cloud content
+message.txt
+6 Ko
