@@ -1,5 +1,5 @@
 WITH airports as (
-    SELECT * FROM {{ ref('stg_airports') }}
+    SELECT * FROM {{ ref('dim_airports') }}
 ),
 
 -- Pour question 2 on calcule dans ce modèle directement le traffic
@@ -9,7 +9,7 @@ traffic_calculation as (
         f.destination_airport_code,
         a.capacity
     FROM {{ ref('stg_individual_flights') }} f
-    JOIN {{ ref('stg_aircraft') }} a on f.aircraft_id = a.aircraft_id
+    JOIN {{ ref('dim_aircraft') }} a on f.aircraft_id = a.aircraft_id
 ),
 
 total_capacity_per_airport as (
