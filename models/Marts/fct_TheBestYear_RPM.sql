@@ -1,7 +1,7 @@
 -- Ici réponse à la question sur les meilleures années directement dans le dim_
 
 WITH airlines as (
-    SELECT * FROM {{ ref('stg_airlines') }}
+    SELECT * FROM {{ ref('dim_airlines') }}
 ),
 
 summary_stats as (
