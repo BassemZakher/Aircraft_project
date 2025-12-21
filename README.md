@@ -41,5 +41,5 @@ The pipeline was designed to efficiently answer four main business questions:
 
 1. **dbt Models:** Navigate to the `/models` folder to see the SQL logic for `stg_`, `dim_`, and `fct_` layers.
 2. **Analysis:** The final data storytelling is available in the provided Deepnote Notebook PDF.
-https://deepnote.com/app/bassem-9c7c/Bassem-ZAKHERs-Aircraftproject-7f0e9cb5-52c9-42b0-bf26-2b43af5378a0?utm_source=status-bar&utm_medium=product-shared-content&utm_campaign=data-app&utm_content=7f0e9cb5-52c9-42b0-bf26-2b43af5378a0
+[Aircraftproject_Notebook.pdf](https://deepnote.com/app/bassem-9c7c/Bassem-ZAKHERs-Aircraftproject-7f0e9cb5-52c9-42b0-bf26-2b43af5378a0?utm_source=status-bar&utm_medium=product-shared-content&utm_campaign=data-app&utm_content=7f0e9cb5-52c9-42b0-bf26-2b43af5378a0)
 ---
